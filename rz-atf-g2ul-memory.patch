@@ -1,0 +1,67 @@
+diff --git a/plat/renesas/rz/common/include/plat_tzc_def.h b/plat/renesas/rz/common/include/plat_tzc_def.h
+index ec19993..b2b01f2 100644
+--- a/plat/renesas/rz/common/include/plat_tzc_def.h
++++ b/plat/renesas/rz/common/include/plat_tzc_def.h
+@@ -34,15 +34,33 @@
+ #define PLAT_AP_TZC_PROT_SRAM2_END		\
+ 	(PLAT_AP_TZC_PROT_SRAM2_BASE + PLAT_AP_TZC_PROT_SRAM2_SIZE - 1)
+ 
++
+ /* Trusted Firmware(BL31) secure DRAM 0x43F00000 - 0x440FFFFF */
++/*
+ #define PLAT_FW_TZC_PROT_DRAM1_BASE		(0x43F00000)
+ #define PLAT_FW_TZC_PROT_DRAM1_SIZE		(0x00200000)
++#define PLAT_FW_TZC_PROT_DRAM1_END		\
++	(PLAT_FW_TZC_PROT_DRAM1_BASE + PLAT_FW_TZC_PROT_DRAM1_SIZE - 1)
++*/
++
++/* Trusted Firmware(BL31) secure DRAM 0x40001000 - 0x400FEFFF */
++#define PLAT_FW_TZC_PROT_DRAM1_BASE            (0x40001000)
++#define PLAT_FW_TZC_PROT_DRAM1_SIZE            (0x000FE000)
+ #define PLAT_FW_TZC_PROT_DRAM1_END		\
+ 	(PLAT_FW_TZC_PROT_DRAM1_BASE + PLAT_FW_TZC_PROT_DRAM1_SIZE - 1)
+ 
+ /* OP-TEE secure DRAM 0x44100000 - 0x47DFFFFF */
++/*
+ #define PLAT_TEE_TZC_PROT_DRAM1_BASE	(0x44100000)
+ #define PLAT_TEE_TZC_PROT_DRAM1_SIZE	(0x03D00000)
++#define PLAT_TEE_TZC_PROT_DRAM1_END		\
++	(PLAT_TEE_TZC_PROT_DRAM1_BASE + PLAT_TEE_TZC_PROT_DRAM1_SIZE - 1)
++*/
++
++
++/* OP-TEE secure DRAM 0x400FF000 - 0x400FFFFF */
++#define PLAT_TEE_TZC_PROT_DRAM1_BASE   (0x400FF000)
++#define PLAT_TEE_TZC_PROT_DRAM1_SIZE   (0x00001000)
+ #define PLAT_TEE_TZC_PROT_DRAM1_END		\
+ 	(PLAT_TEE_TZC_PROT_DRAM1_BASE + PLAT_TEE_TZC_PROT_DRAM1_SIZE - 1)
+ 
+diff --git a/plat/renesas/rz/common/include/platform_def.h b/plat/renesas/rz/common/include/platform_def.h
+index 8de429b..14c23a1 100755
+--- a/plat/renesas/rz/common/include/platform_def.h
++++ b/plat/renesas/rz/common/include/platform_def.h
+@@ -55,15 +55,23 @@
+ /*******************************************************************************
+  * BL31 specific defines.
+  ******************************************************************************/
++/*
+ #define BL31_BASE				(0x44000000)
+ #define BL31_LIMIT				(0x44040000)
+-
++*/
++#define BL31_BASE                              (0x40001000)
++#define BL31_LIMIT                             (BL31_BASE + 0xFE000)
+ /*******************************************************************************
+  * BL32 specific defines.
+  ******************************************************************************/
+ #ifndef SPD_none
++/*
+ #define BL32_BASE				(0x44100000)
+ #define BL32_LIMIT				(BL32_BASE + 0x100000)
++*/
++
++#define BL32_BASE                              (0x400FF000)
++#define BL32_LIMIT                             (BL32_BASE + 0x1000)
+ #endif
+ 
+ /*******************************************************************************
