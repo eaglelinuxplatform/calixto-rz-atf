@@ -5,7 +5,7 @@
 #
 
 
-DDR_SOURCES	+=	plat/renesas/rz/soc/${PLAT}/drivers/ddr/param_mc_C-011_D4-01-2.c	\
+DDR_SOURCES	+=	plat/renesas/rz/soc/${PLAT}/drivers/ddr/param_mc_C-011-D3-01-1.c	\
 				plat/renesas/rz/common/drivers/ddr/param_swizzle_T3bcul.c
 
 DDR_PLL4	:= 1333
